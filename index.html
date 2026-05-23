@@ -55,15 +55,1628 @@
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
   <!-- Custom styles -->
-  <link rel="stylesheet" href="./styles.css">
+  <style>
+/* styles.css - Custom styling for Madhava Krishna .S Portfolio */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+:root {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0b0f19;
+}
+.light ::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #4f46e5;
+}
+.light ::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+}
+.light ::-webkit-scrollbar-thumb:hover {
+  background: #6366f1;
+}
+
+/* Hide scrollbar when loading */
+.loading-active {
+  overflow: hidden;
+}
+
+/* Glassmorphism base classes */
+.glass-panel {
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.light .glass-panel {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.04);
+}
+
+/* Card Glow Effects */
+.glow-card {
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glow-card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(90deg, #6366f1, #06b6d4, #ec4899);
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.glow-card:hover::before {
+  opacity: 0.7;
+}
+
+.glow-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 30px -10px rgba(99, 102, 241, 0.4);
+}
+
+.light .glow-card:hover {
+  box-shadow: 0 15px 30px -10px rgba(99, 102, 241, 0.15);
+}
+
+/* Animated Grid Background */
+.bg-grid-cyber {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(99, 102, 241, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(99, 102, 241, 0.04) 1px, transparent 1px);
+}
+
+.light .bg-grid-cyber {
+  background-image: 
+    linear-gradient(to right, rgba(99, 102, 241, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(99, 102, 241, 0.03) 1px, transparent 1px);
+}
+
+/* Background Blobs */
+@keyframes blob-float {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.95);
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+}
+
+.animate-blob-1 {
+  animation: blob-float 12s infinite alternate ease-in-out;
+}
+
+.animate-blob-2 {
+  animation: blob-float 15s infinite alternate-reverse ease-in-out;
+  animation-delay: 2s;
+}
+
+.animate-blob-3 {
+  animation: blob-float 18s infinite alternate ease-in-out;
+  animation-delay: 4s;
+}
+
+/* Text Shimmer Effect */
+.shimmer-text {
+  background: linear-gradient(
+    to right,
+    #9333ea,
+    #4f46e5 20%,
+    #06b6d4 40%,
+    #06b6d4 60%,
+    #4f46e5 80%,
+    #9333ea
+  );
+  background-size: 200% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: shimmer 8s linear infinite;
+}
+
+@keyframes shimmer {
+  to {
+    background-position: 200% center;
+  }
+}
+
+/* Skill Progress Fill Animation */
+@keyframes progress-fill {
+  from { width: 0%; }
+}
+.skills-active .skill-progress-bar {
+  animation: progress-fill 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Typing Caret Animation */
+@keyframes caret-pulse {
+  50% { border-color: transparent; }
+}
+.typing-caret {
+  border-right: 3px solid #6366f1;
+  animation: caret-pulse 0.75s step-end infinite;
+}
+
+/* Cursor Glow Indicator */
+.custom-cursor-glow {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, rgba(6, 182, 212, 0.03) 50%, transparent 100%);
+  border-radius: 50%;
+  pointer-events: none;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  transition: width 0.3s ease, height 0.3s ease;
+  will-change: transform;
+}
+
+.light .custom-cursor-glow {
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.05) 0%, rgba(6, 182, 212, 0.01) 50%, transparent 100%);
+}
+
+/* Glowing Pulsating Dots */
+@keyframes pulse-glow {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.7);
+  }
+  50% {
+    transform: scale(1.2);
+    box-shadow: 0 0 15px 4px rgba(99, 102, 241, 0);
+  }
+}
+
+.pulse-dot {
+  animation: pulse-glow 2s infinite ease-in-out;
+}
+
+/* Timeline vertical line drawing */
+.timeline-line {
+  background: linear-gradient(to bottom, #6366f1, #06b6d4, #ec4899);
+}
+
+/* Spinner Rotate */
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.animate-spin-slow {
+  animation: spin-slow 8s linear infinite;
+}
+
+/* Reveal transition utilities */
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.reveal-hidden {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* Decorative Card SVG Grids */
+.card-grid-dots {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px);
+  background-size: 10px 10px;
+}
+.light .card-grid-dots {
+  background-image: radial-gradient(rgba(0, 0, 0, 0.08) 1px, transparent 1px);
+}
+
+  </style>
 </head>
 <body class="bg-darkBg antialiased selection:bg-indigo-500 selection:text-white transition-colors duration-300">
   
   <!-- Root React container -->
   <div id="root"></div>
 
+  
+
   <!-- Load Babel script to compile React components in the browser -->
-  <script type="text/babel" src="./app.js"></script>
+  <script type="text/babel">
+// app.js - React and Babel JSX application logic for Madhava Krishna .S Portfolio
+// Profile photo: ./profile.png
+
+const { useState, useEffect, useRef } = React;
+
+// Main App Component
+function App() {
+  const [darkMode, setDarkMode] = useState(true);
+  const [scrollPercent, setScrollPercent] = useState(0);
+  const [activeSection, setActiveSection] = useState('home');
+  const [loading, setLoading] = useState(true);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [showResumeModal, setShowResumeModal] = useState(false);
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+  const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
+  const [isSending, setIsSending] = useState(false);
+
+  // Stats Counters
+  const [stats, setStats] = useState({ projects: 0, models: 0, hours: 0, languages: 0 });
+
+  // Handle dark mode toggle
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add('dark');
+      document.documentElement.classList.remove('light');
+    } else {
+      document.documentElement.classList.add('light');
+      document.documentElement.classList.remove('dark');
+    }
+  }, [darkMode]);
+
+  // Track scroll percentage and active sections
+  useEffect(() => {
+    const handleScroll = () => {
+      // Scroll Progress Bar
+      const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
+      if (totalScroll > 0) {
+        setScrollPercent(Math.min((window.scrollY / totalScroll) * 100, 100));
+      }
+
+      // Active Section Tracker
+      const sections = ['home', 'about', 'skills', 'experience', 'projects', 'education', 'contact'];
+      const scrollPosition = window.scrollY + 200;
+
+      for (const section of sections) {
+        const el = document.getElementById(section);
+        if (el) {
+          const top = el.offsetTop;
+          const height = el.offsetHeight;
+          if (scrollPosition >= top && scrollPosition < top + height) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Track mouse coordinates for cursor glow (only on desktop/pointer device)
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      setMousePos({ x: e.clientX, y: e.clientY });
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+  // End preloading after timeout and animate counters
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+      
+      // Animate Stats
+      let prj = 0, mdl = 0, hrs = 0, lng = 0;
+      const targetPrj = 5, targetMdl = 12, targetHrs = 600, targetLng = 4;
+      const duration = 2000; // 2 seconds
+      const steps = 50;
+      const stepTime = duration / steps;
+      
+      const counterInterval = setInterval(() => {
+        let finished = true;
+        
+        if (prj < targetPrj) { prj += Math.ceil(targetPrj / steps); if (prj > targetPrj) prj = targetPrj; finished = false; }
+        if (mdl < targetMdl) { mdl += Math.ceil(targetMdl / steps); if (mdl > targetMdl) mdl = targetMdl; finished = false; }
+        if (hrs < targetHrs) { hrs += Math.ceil(targetHrs / steps); if (hrs > targetHrs) hrs = targetHrs; finished = false; }
+        if (lng < targetLng) { lng += Math.ceil(targetLng / steps); if (lng > targetLng) lng = targetLng; finished = false; }
+        
+        setStats({
+          projects: prj,
+          models: mdl,
+          hours: hrs,
+          languages: lng
+        });
+        
+        if (finished) clearInterval(counterInterval);
+      }, stepTime);
+      
+    }, 1800);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Custom Form Submission
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    setIsSending(true);
+    // Simulate API request
+    setTimeout(() => {
+      setIsSending(false);
+      setIsFormSubmitted(true);
+      setFormData({ name: '', email: '', subject: '', message: '' });
+      // Reset toast after 5s
+      setTimeout(() => setIsFormSubmitted(false), 5000);
+    }, 1500);
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  return (
+    <div className={`min-h-screen text-slate-100 dark:text-slate-100 transition-colors duration-300 ${darkMode ? 'bg-darkBg' : 'bg-lightBg text-slate-800'}`}>
+      
+      {/* 1. Loading Preloader */}
+      {loading && <LoadingScreen />}
+
+      {/* 2. Custom Cursor Glow */}
+      <div 
+        className="custom-cursor-glow hidden md:block" 
+        style={{ left: `${mousePos.x}px`, top: `${mousePos.y}px` }}
+      />
+
+      {/* 3. Scroll Progress Indicator */}
+      <div className="fixed top-0 left-0 w-full h-[3px] z-[100] bg-slate-800/10 dark:bg-slate-700/20">
+        <div 
+          className="h-full bg-gradient-to-r from-indigo-500 via-cyan-500 to-pink-500 transition-all duration-75"
+          style={{ width: `${scrollPercent}%` }}
+        />
+      </div>
+
+      {/* 4. Navigation Bar */}
+      <Navbar 
+        darkMode={darkMode} 
+        setDarkMode={setDarkMode} 
+        activeSection={activeSection}
+        mobileMenuOpen={mobileMenuOpen}
+        setMobileMenuOpen={setMobileMenuOpen}
+        setShowResumeModal={setShowResumeModal}
+      />
+
+      {/* 5. Main Hero Section */}
+      <Hero id="home" setShowResumeModal={setShowResumeModal} />
+
+      {/* 6. About Section */}
+      <About id="about" stats={stats} />
+
+      {/* 7. Skills Section */}
+      <Skills id="skills" />
+
+      {/* 8. Experience Section */}
+      <Experience id="experience" />
+
+      {/* 9. Projects Section */}
+      <Projects id="projects" />
+
+      {/* 10. Education Section */}
+      <Education id="education" />
+
+      {/* 11. Contact Section */}
+      <Contact 
+        id="contact" 
+        formData={formData} 
+        isSending={isSending}
+        handleFormSubmit={handleFormSubmit}
+        handleInputChange={handleInputChange}
+        isFormSubmitted={isFormSubmitted}
+        setIsFormSubmitted={setIsFormSubmitted}
+      />
+
+      {/* 12. Footer */}
+      <Footer />
+
+      {/* 13. Resume Modal */}
+      {showResumeModal && <ResumeModal onClose={() => setShowResumeModal(false)} />}
+    </div>
+  );
+}
+
+// Sub-Component: Loading Preloader
+function LoadingScreen() {
+  return (
+    <div className="fixed inset-0 bg-[#070a13] z-[9999] flex flex-col items-center justify-center">
+      <div className="relative flex flex-col items-center">
+        {/* Futuristic Glowing Ring */}
+        <div className="relative w-28 h-28 flex items-center justify-center">
+          <div className="absolute inset-0 rounded-full border-2 border-dashed border-indigo-500/30 animate-spin-slow"></div>
+          <div className="absolute inset-2 rounded-full border-b-2 border-r-2 border-cyan-400 animate-spin"></div>
+          <div className="absolute inset-4 rounded-full border-t-2 border-l-2 border-pink-500 animate-pulse"></div>
+          <span className="text-xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400 font-mono">MK</span>
+        </div>
+        
+        {/* Dynamic Loading Texts */}
+        <h3 className="mt-8 text-sm font-semibold tracking-[0.3em] text-indigo-400 animate-pulse font-mono">
+          SYSTEMS INITIALIZING...
+        </h3>
+        
+        {/* Simulated Progress text */}
+        <p className="mt-2 text-xs font-mono text-slate-500">
+          AI & Core Microservices Loaded
+        </p>
+
+        {/* Small Progress Bar */}
+        <div className="w-48 h-1 bg-slate-800 rounded-full mt-4 overflow-hidden relative">
+          <div className="h-full bg-gradient-to-r from-indigo-500 to-cyan-400 absolute left-0 top-0 w-0 animate-[loading-bar_1.8s_ease-out_forwards]"></div>
+        </div>
+      </div>
+      <style>{`
+        @keyframes loading-bar {
+          100% { width: 100%; }
+        }
+      `}</style>
+    </div>
+  );
+}
+
+// Sub-Component: Navigation Bar
+function Navbar({ darkMode, setDarkMode, activeSection, mobileMenuOpen, setMobileMenuOpen, setShowResumeModal }) {
+  const navItems = [
+    { id: 'home', label: 'Home' },
+    { id: 'about', label: 'About' },
+    { id: 'skills', label: 'Skills' },
+    { id: 'experience', label: 'Experience' },
+    { id: 'projects', label: 'Projects' },
+    { id: 'education', label: 'Education' },
+    { id: 'contact', label: 'Contact' }
+  ];
+
+  return (
+    <nav className="fixed top-0 left-0 w-full z-50 glass-panel border-b transition-all duration-300 py-4">
+      <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
+        {/* Brand Logo removed per request */}
+        <div></div>
+
+        {/* Desktop Links */}
+        <div className="hidden lg:flex items-center space-x-8">
+          {navItems.map((item) => (
+            <a
+              key={item.id}
+              href={`#${item.id}`}
+              className={`text-sm font-medium tracking-wide transition-all duration-200 relative py-1 hover:text-indigo-500 ${
+                activeSection === item.id 
+                  ? 'text-indigo-500 font-semibold' 
+                  : 'dark:text-slate-300 text-slate-600'
+              }`}
+            >
+              {item.label}
+              {activeSection === item.id && (
+                <span className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-indigo-500 to-cyan-500 rounded-full" />
+              )}
+            </a>
+          ))}
+        </div>
+
+        {/* Action Controls */}
+        <div className="hidden lg:flex items-center space-x-4">
+          {/* Dark Mode Toggle */}
+          <button 
+            onClick={() => setDarkMode(!darkMode)}
+            className="w-10 h-10 rounded-xl flex items-center justify-center border border-slate-700/30 hover:bg-slate-800/10 dark:hover:bg-slate-700/30 transition-colors"
+            title="Toggle Theme"
+          >
+            {darkMode ? (
+              <i data-lucide="sun" className="w-5 h-5 text-amber-400 animate-spin-slow"></i>
+            ) : (
+              <i data-lucide="moon" className="w-5 h-5 text-slate-600"></i>
+            )}
+          </button>
+
+          {/* CV Button */}
+          <button 
+            onClick={() => setShowResumeModal(true)}
+            className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-indigo-600 to-cyan-500 hover:from-indigo-500 hover:to-cyan-400 text-white text-xs font-semibold tracking-wider uppercase transition-all duration-300 shadow-neon-indigo hover:shadow-neon-cyan active:scale-95"
+          >
+            Download CV
+          </button>
+        </div>
+
+        {/* Mobile Navbar Hamburger & Controls */}
+        <div className="flex items-center space-x-3 lg:hidden">
+          <button 
+            onClick={() => setDarkMode(!darkMode)}
+            className="w-9 h-9 rounded-xl flex items-center justify-center border border-slate-700/30 hover:bg-slate-800/10 dark:hover:bg-slate-700/30 transition-colors"
+          >
+            {darkMode ? (
+              <i data-lucide="sun" className="w-4 h-4 text-amber-400"></i>
+            ) : (
+              <i data-lucide="moon" className="w-4 h-4 text-slate-600"></i>
+            )}
+          </button>
+          
+          <button 
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="w-9 h-9 rounded-xl flex items-center justify-center border border-slate-700/30 hover:bg-slate-800/10 dark:hover:bg-slate-700/30 transition-colors"
+          >
+            <i data-lucide={mobileMenuOpen ? "x" : "menu"} className="w-5 h-5 text-indigo-500"></i>
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Drawer Menu */}
+      {mobileMenuOpen && (
+        <div className="lg:hidden absolute top-[72px] left-0 w-full glass-panel border-b py-6 px-8 flex flex-col space-y-4 animate-fade-in">
+          {navItems.map((item) => (
+            <a
+              key={item.id}
+              href={`#${item.id}`}
+              onClick={() => setMobileMenuOpen(false)}
+              className={`text-md font-medium tracking-wide py-1 transition-all ${
+                activeSection === item.id 
+                  ? 'text-indigo-500 pl-2 border-l-2 border-indigo-500 font-semibold' 
+                  : 'dark:text-slate-300 text-slate-600'
+              }`}
+            >
+              {item.label}
+            </a>
+          ))}
+          <button 
+            onClick={() => { setMobileMenuOpen(false); setShowResumeModal(true); }}
+            className="w-full mt-4 py-3 rounded-xl bg-gradient-to-r from-indigo-600 to-cyan-500 text-white font-semibold text-sm text-center"
+          >
+            Download CV
+          </button>
+        </div>
+      )}
+    </nav>
+  );
+}
+
+// Sub-Component: Typing Effect hook / component
+function TypingEffect({ texts }) {
+  const [text, setText] = useState('');
+  const [index, setIndex] = useState(0);
+  const [subIndex, setSubIndex] = useState(0);
+  const [reverse, setReverse] = useState(false);
+
+  useEffect(() => {
+    if (subIndex === texts[index].length + 1 && !reverse) {
+      const timeout = setTimeout(() => setReverse(true), 1500); // Hold time
+      return () => clearTimeout(timeout);
+    }
+
+    if (subIndex === 0 && reverse) {
+      setReverse(false);
+      setIndex((prev) => (prev + 1) % texts.length);
+      return;
+    }
+
+    const timeout = setTimeout(() => {
+      setSubIndex((prev) => prev + (reverse ? -1 : 1));
+    }, reverse ? 30 : 60);
+
+    return () => clearTimeout(timeout);
+  }, [subIndex, reverse, index, texts]);
+
+  useEffect(() => {
+    setText(texts[index].substring(0, subIndex));
+  }, [subIndex, index, texts]);
+
+  return (
+    <span className="typing-caret pb-1 pr-1 font-mono font-bold dark:text-cyan-400 text-indigo-600">
+      {text}
+    </span>
+  );
+}
+
+// Sub-Component: Hero Section
+function Hero({ id, setShowResumeModal }) {
+  const typingSkills = ["AI Enthusiast", "Computer Science Engineer", "Future-Focused Developer", "Spring Boot & Java Coder"];
+
+  useEffect(() => {
+    // Re-initialize lucide icons inside components if needed
+    if (window.lucide) window.lucide.createIcons();
+  }, []);
+
+  return (
+    <section id={id} className="min-h-screen relative flex items-center justify-center pt-24 overflow-hidden bg-grid-cyber">
+      
+      {/* Premium Background Blobs */}
+      <div className="absolute top-[20%] left-[10%] w-[350px] h-[350px] rounded-full bg-indigo-600/10 blur-[100px] animate-blob-1 dark:block hidden" />
+      <div className="absolute bottom-[20%] right-[10%] w-[400px] h-[400px] rounded-full bg-cyan-500/10 blur-[100px] animate-blob-2 dark:block hidden" />
+      <div className="absolute top-[40%] right-[30%] w-[300px] h-[300px] rounded-full bg-pink-500/10 blur-[90px] animate-blob-3 dark:block hidden" />
+
+      {/* Main Container */}
+      <div className="max-w-6xl mx-auto px-6 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center w-full py-12">
+        
+        {/* Hero Copy (8 cols) */}
+        <div className="lg:col-span-7 flex flex-col text-center lg:text-left">
+          
+          {/* Tag Welcome */}
+          <div className="inline-flex items-center space-x-2 bg-indigo-500/10 border border-indigo-500/20 px-4 py-1.5 rounded-full w-max mx-auto lg:mx-0 animate-[fade-in-up_0.6s_ease-out]">
+            <span className="w-2 h-2 rounded-full bg-indigo-500 animate-ping"></span>
+            <span className="text-xs font-semibold tracking-wider uppercase text-indigo-400 dark:text-indigo-300">
+              Welcome to my portfolio
+            </span>
+          </div>
+
+          {/* Name Prominently */}
+          <h1 className="mt-6 text-4xl sm:text-6xl font-extrabold tracking-tight leading-tight animate-[fade-in-up_0.8s_ease-out]">
+            <span className="dark:text-slate-200 text-slate-800">Hi, I'm </span>
+            <br />
+            <span className="shimmer-text">Madhava Krishna .S</span>
+          </h1>
+
+          {/* Title Subtitle */}
+          <h2 className="mt-4 text-xl sm:text-2xl font-bold dark:text-indigo-300 text-indigo-600 animate-[fade-in-up_1s_ease-out]">
+            Software Developer at Accelya
+          </h2>
+
+          {/* Tagline & Typing */}
+          <div className="mt-4 text-base sm:text-lg dark:text-slate-400 text-slate-600 font-semibold h-[40px] flex items-center justify-center lg:justify-start">
+            <span className="mr-2">I am a</span>
+            <TypingEffect texts={typingSkills} />
+          </div>
+
+          <p className="mt-6 text-sm sm:text-base text-slate-500 dark:text-slate-400 max-w-xl leading-relaxed mx-auto lg:mx-0">
+            A computer science engineer with an academic foundation in AI and machine learning, integrating robust backend technologies like Java and Spring Boot to build future-proof software solutions.
+          </p>
+
+          {/* Professional Buttons */}
+          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
+            <a 
+              href="#projects"
+              className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-gradient-to-r from-indigo-600 to-cyan-500 text-white font-semibold shadow-neon-indigo hover:shadow-neon-cyan hover:-translate-y-1 transition-all duration-300 text-center"
+            >
+              View Projects
+            </a>
+            
+            <a 
+              href="#contact"
+              className="w-full sm:w-auto px-8 py-4 rounded-2xl border border-slate-700/50 hover:border-indigo-500 dark:text-slate-300 text-slate-700 hover:text-indigo-500 dark:hover:text-indigo-400 hover:-translate-y-1 transition-all duration-300 text-center bg-slate-900/10 dark:bg-slate-950/20"
+            >
+              Contact Me
+            </a>
+          </div>
+        </div>
+
+        {/* Hero Interactive Widget (5 cols) */}
+        <div className="lg:col-span-5 flex items-center justify-center relative">
+          
+          {/* Orbit Design Component */}
+          <div className="relative w-72 h-72 sm:w-96 sm:h-96 flex items-center justify-center">
+            
+            {/* Spinning Circuit Pattern */}
+            <div className="absolute inset-0 rounded-full border border-indigo-500/10 animate-spin-slow">
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-indigo-500/40 blur-[4px] animate-pulse"></div>
+            </div>
+            <div className="absolute inset-8 rounded-full border border-dashed border-cyan-500/10 animate-[spin_15s_linear_infinite_reverse]">
+              <div className="absolute bottom-0 left-1/3 w-3 h-3 rounded-full bg-cyan-500/40 blur-[4px] animate-pulse"></div>
+            </div>
+            <div className="absolute inset-16 rounded-full border border-pink-500/10 animate-[spin_20s_linear_infinite]">
+              <div className="absolute top-1/3 right-0 w-3 h-3 rounded-full bg-pink-500/40 blur-[4px]"></div>
+            </div>
+
+            {/* Profile Photo Container */}
+            <div className="w-52 h-52 sm:w-64 sm:h-64 rounded-full shadow-2xl relative overflow-hidden group" style={{border: '3px solid rgba(99,102,241,0.4)'}}>
+              {/* Glowing border overlay */}
+              <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-indigo-500/20 via-transparent to-cyan-400/20 z-10 pointer-events-none group-hover:opacity-0 transition-opacity duration-500" />
+              
+              {/* Actual Profile Photo */}
+              <img
+                src="./profile.jpg"
+                alt="Madhava Krishna .S"
+                className="w-full h-full object-cover object-top rounded-full"
+                style={{filter: 'brightness(1.05) contrast(1.02)'}}
+              />
+
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      {/* Bounce Downward Indicator */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center opacity-65 animate-bounce">
+        <span className="text-[10px] tracking-[0.2em] font-mono text-slate-500">SCROLL DOWN</span>
+        <i data-lucide="chevron-down" className="w-5 h-5 text-indigo-500 mt-1"></i>
+      </div>
+    </section>
+  );
+}
+
+// Sub-Component: About Section
+function About({ id, stats }) {
+  useEffect(() => {
+    if (window.lucide) window.lucide.createIcons();
+  }, []);
+
+  return (
+    <section id={id} className="py-24 relative overflow-hidden">
+      <div className="max-w-6xl mx-auto px-6 relative z-10">
+        
+        {/* Section Header */}
+        <div className="text-center lg:text-left mb-16">
+          <h2 className="text-xs font-extrabold tracking-[0.2em] text-indigo-500 uppercase">01. Discovery</h2>
+          <h3 className="mt-2 text-3xl sm:text-4xl font-extrabold dark:text-white text-slate-800">
+            About Madhava Krishna
+          </h3>
+          <div className="h-1 w-20 bg-gradient-to-r from-indigo-500 to-cyan-500 rounded-full mt-4 mx-auto lg:mx-0" />
+        </div>
+
+        {/* Grid: Profile and Content */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          {/* Left Side: Modern Profile Card (5 cols) */}
+          <div className="lg:col-span-5 flex justify-center">
+            <div className="relative group w-72 h-96 sm:w-80 sm:h-[420px]">
+              
+              {/* Gradient Aura under card */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-indigo-600 via-cyan-500 to-pink-500 rounded-3xl blur-xl opacity-30 group-hover:opacity-50 transition-opacity duration-300" />
+              
+              {/* Glass Card */}
+              <div className="absolute inset-0 glass-panel rounded-3xl p-6 border border-white/10 flex flex-col justify-between overflow-hidden glow-card">
+                {/* SVG Design Header */}
+                <div className="flex justify-between items-center">
+                  <div className="flex space-x-1.5">
+                    <span className="w-3 h-3 rounded-full bg-rose-500/80"></span>
+                    <span className="w-3 h-3 rounded-full bg-amber-500/80"></span>
+                    <span className="w-3 h-3 rounded-full bg-emerald-500/80"></span>
+                  </div>
+                  <span className="text-[10px] font-mono text-slate-500">dev_profile.json</span>
+                </div>
+
+                {/* Profile Avatar Graphic */}
+                <div className="flex flex-col items-center py-6">
+                  <div className="relative w-36 h-36 rounded-full p-1 bg-gradient-to-tr from-indigo-500 to-cyan-400 shadow-xl flex items-center justify-center">
+                    {/* Premium MK Monogram Avatar */}
+                    <div className="w-full h-full rounded-full bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 flex items-center justify-center relative overflow-hidden">
+                      {/* Subtle dot-grid inside */}
+                      <div className="absolute inset-0 card-grid-dots opacity-20" />
+                      {/* Glow pulse */}
+                      <div className="absolute inset-0 rounded-full bg-indigo-500/10 animate-pulse" />
+                      {/* Monogram Letters */}
+                      <span className="relative z-10 text-4xl font-extrabold tracking-tighter font-mono bg-gradient-to-br from-indigo-400 via-cyan-400 to-indigo-300 bg-clip-text text-transparent select-none drop-shadow-[0_0_12px_rgba(99,102,241,0.6)]">
+                        MK
+                      </span>
+                    </div>
+                  </div>
+                  
+                  <h4 className="mt-4 text-lg font-bold tracking-wide dark:text-white text-slate-800">Madhava Krishna .S</h4>
+                  <p className="text-xs font-mono text-indigo-400">Software Developer</p>
+                </div>
+
+                {/* Stats quick view */}
+                <div className="border-t border-slate-700/30 pt-4 flex justify-around text-center">
+                  <div>
+                    <div className="text-base font-bold dark:text-cyan-400 text-indigo-600">Accelya</div>
+                    <div className="text-[9px] uppercase tracking-wider text-slate-500">Current Co.</div>
+                  </div>
+                  <div className="border-l border-slate-700/30 h-8" />
+                  <div>
+                    <div className="text-base font-bold dark:text-pink-400 text-indigo-600">B.E. CSE</div>
+                    <div className="text-[9px] uppercase tracking-wider text-slate-500">Degree</div>
+                  </div>
+                </div>
+
+                {/* Cybernetic details decoration */}
+                <div className="absolute top-2 right-2 w-12 h-12 card-grid-dots opacity-20 pointer-events-none" />
+              </div>
+            </div>
+          </div>
+
+          {/* Right Side: Professional Content (7 cols) */}
+          <div className="lg:col-span-7 space-y-6">
+            {/* The professional summary provided by the user */}
+            <p className="text-base dark:text-slate-300 text-slate-700 leading-relaxed font-sans">
+              “I am a recent Computer Science Engineering graduate with a strong interest in Artificial Intelligence and its real-world applications. As a fresher, I have learned the fundamentals of AI through academic projects, including phishing website detection using machine learning. I also have basic knowledge of Java, Spring Boot, and microservices, which I aim to integrate with AI solutions. I am eager to start my career, learn continuously, and contribute to AI-based projects in a professional environment.”
+            </p>
+
+            <p className="text-sm dark:text-slate-400 text-slate-500 leading-relaxed">
+              My engineering background enables me to bridge logical software architectures with cutting-edge data science methodologies. I thrive on collaborating within multi-functional teams, solving intricate security anomalies, and writing clean, scalable services.
+            </p>
+
+            {/* Quick stats grid */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6">
+              <div className="glass-panel p-4 rounded-2xl border border-slate-700/30 text-center transition-all duration-300 hover:border-indigo-500/50">
+                <h5 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">
+                  {stats.projects}+
+                </h5>
+                <p className="text-[10px] tracking-wide text-slate-500 font-semibold uppercase mt-1">Projects Done</p>
+              </div>
+
+              <div className="glass-panel p-4 rounded-2xl border border-slate-700/30 text-center transition-all duration-300 hover:border-indigo-500/50">
+                <h5 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">
+                  {stats.models}+
+                </h5>
+                <p className="text-[10px] tracking-wide text-slate-500 font-semibold uppercase mt-1">Models Trained</p>
+              </div>
+
+              <div className="glass-panel p-4 rounded-2xl border border-slate-700/30 text-center transition-all duration-300 hover:border-indigo-500/50">
+                <h5 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">
+                  {stats.hours}+
+                </h5>
+                <p className="text-[10px] tracking-wide text-slate-500 font-semibold uppercase mt-1">Coding Hours</p>
+              </div>
+
+              <div className="glass-panel p-4 rounded-2xl border border-slate-700/30 text-center transition-all duration-300 hover:border-indigo-500/50">
+                <h5 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">
+                  {stats.languages}
+                </h5>
+                <p className="text-[10px] tracking-wide text-slate-500 font-semibold uppercase mt-1">Languages Spoken</p>
+              </div>
+            </div>
+
+            {/* Quick highlight widgets */}
+            <div className="flex flex-wrap gap-3 pt-2">
+              <span className="flex items-center space-x-1 text-xs font-semibold px-3 py-1.5 rounded-full dark:bg-slate-800 bg-slate-100 border border-slate-700/20 text-indigo-500 dark:text-indigo-400">
+                <i data-lucide="shield-check" className="w-3.5 h-3.5 mr-1" /> Cybersecurity
+              </span>
+              <span className="flex items-center space-x-1 text-xs font-semibold px-3 py-1.5 rounded-full dark:bg-slate-800 bg-slate-100 border border-slate-700/20 text-cyan-500 dark:text-cyan-400">
+                <i data-lucide="database" className="w-3.5 h-3.5 mr-1" /> Spring Boot
+              </span>
+              <span className="flex items-center space-x-1 text-xs font-semibold px-3 py-1.5 rounded-full dark:bg-slate-800 bg-slate-100 border border-slate-700/20 text-pink-500 dark:text-pink-400">
+                <i data-lucide="cpu" className="w-3.5 h-3.5 mr-1" /> Neural Nets
+              </span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+  );
+}
+
+// Sub-Component: Skills Section
+function Skills({ id }) {
+  useEffect(() => {
+    if (window.lucide) window.lucide.createIcons();
+  }, []);
+
+  const technicalSkills = [
+    { name: "Artificial Intelligence", percentage: 85, icon: "brain-circuit", desc: "Core algorithms, neural architectures, and intelligent agent designs.", color: "from-indigo-600 to-purple-500" },
+    { name: "Machine Learning", percentage: 88, icon: "network", desc: "Classification, regression, clustering models, and data exploration.", color: "from-cyan-500 to-blue-500" },
+    { name: "Java", percentage: 82, icon: "coffee", desc: "Object-oriented programming, data structures, and multithreading.", color: "from-amber-600 to-orange-500" },
+    { name: "Spring Boot", percentage: 80, icon: "leaf", desc: "Enterprise architecture, dependency injection, and REST controllers.", color: "from-emerald-500 to-teal-600" },
+    { name: "Microservices", percentage: 78, icon: "blocks", desc: "Service discovery, API gateways, inter-service messaging systems.", color: "from-pink-500 to-rose-600" },
+    { name: "HTML & CSS", percentage: 90, icon: "code", desc: "Semantic tags, responsive structures, flexbox, grids, and clean CSS.", color: "from-orange-500 to-pink-500" },
+    { name: "JavaScript", percentage: 85, icon: "terminal", desc: "ES6 syntax, DOM API, fetch requests, state management, and modern logic.", color: "from-yellow-500 to-amber-500" }
+  ];
+
+  const languages = [
+    { name: "English", level: "Professional / Fluent", badge: "Primary", desc: "Fluent in corporate, verbal, and technical documentation.", rating: 5 },
+    { name: "Telugu", level: "Native / Mother Tongue", badge: "Native", desc: "Excellent verbal and writing fluency.", rating: 5 },
+    { name: "Hindi", level: "Conversational", badge: "Fluent", desc: "Comfortable communicating in collaborative teams.", rating: 4 },
+    { name: "Tamil", level: "Conversational / Basic", badge: "Basic", desc: "Basic speaking and understanding capabilities.", rating: 3 }
+  ];
+
+  return (
+    <section id={id} className="py-24 relative bg-slate-900/10 dark:bg-slate-950/20">
+      <div className="max-w-6xl mx-auto px-6 relative z-10">
+        
+        {/* Section Header */}
+        <div className="text-center mb-16">
+          <h2 className="text-xs font-extrabold tracking-[0.2em] text-indigo-500 uppercase">02. Capabilities</h2>
+          <h3 className="mt-2 text-3xl sm:text-4xl font-extrabold dark:text-white text-slate-800">
+            Skills & Knowledge Base
+          </h3>
+          <div className="h-1 w-20 bg-gradient-to-r from-indigo-500 to-cyan-500 rounded-full mt-4 mx-auto" />
+        </div>
+
+        {/* Skills Container */}
+        <div className="space-y-16">
+          {/* Technical Expertise Sub-Section */}
+          <div>
+            <h4 className="text-xl font-bold dark:text-white text-slate-800 mb-8 flex items-center justify-center sm:justify-start">
+              <i data-lucide="cpu" className="w-5 h-5 text-indigo-500 mr-2"></i>
+              Technical Expertise
+            </h4>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {technicalSkills.map((skill, index) => (
+                <div 
+                  key={index}
+                  className="glass-panel p-6 rounded-3xl border border-slate-700/20 transition-all duration-300 hover:border-indigo-500/40 glow-card"
+                >
+                  <div className="flex justify-between items-center mb-4">
+                    <div className="w-11 h-11 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400">
+                      <i data-lucide={skill.icon} className="w-5 h-5"></i>
+                    </div>
+                    <span className="text-xs font-mono font-bold dark:text-cyan-400 text-indigo-500">{skill.percentage}%</span>
+                  </div>
+                  
+                  <h4 className="text-lg font-bold tracking-wide dark:text-white text-slate-800">{skill.name}</h4>
+                  <p className="text-xs dark:text-slate-400 text-slate-500 mt-2 h-12 overflow-hidden leading-relaxed">
+                    {skill.desc}
+                  </p>
+
+                  {/* Progress bar container */}
+                  <div className="mt-4 w-full h-1.5 dark:bg-slate-800 bg-slate-200 rounded-full overflow-hidden">
+                    <div 
+                      className={`h-full bg-gradient-to-r ${skill.color} rounded-full skill-progress-bar`} 
+                      style={{ width: `${skill.percentage}%` }}
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Languages Known Sub-Section */}
+          <div>
+            <h4 className="text-xl font-bold dark:text-white text-slate-800 mb-8 flex items-center justify-center sm:justify-start">
+              <i data-lucide="languages" className="w-5 h-5 text-indigo-500 mr-2"></i>
+              Languages Known
+            </h4>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {languages.map((lang, index) => (
+                <div 
+                  key={index}
+                  className="glass-panel p-6 rounded-3xl border border-slate-700/20 transition-all duration-300 hover:border-indigo-500/40 hover:-translate-y-1 relative overflow-hidden"
+                >
+                  <div className="flex justify-between items-start mb-4">
+                    <div>
+                      <h4 className="text-lg font-bold dark:text-white text-slate-800">{lang.name}</h4>
+                      <p className="text-[11px] font-semibold text-indigo-500 dark:text-indigo-400 mt-0.5">{lang.level}</p>
+                    </div>
+                    <span className="px-2.5 py-0.5 text-[9px] font-bold rounded-md bg-indigo-500/10 border border-indigo-500/20 dark:text-indigo-300 text-indigo-600">
+                      {lang.badge}
+                    </span>
+                  </div>
+
+                  <p className="text-xs dark:text-slate-400 text-slate-500 leading-relaxed mb-4 h-12 overflow-hidden">
+                    {lang.desc}
+                  </p>
+
+                  {/* Rating Stars Visual */}
+                  <div className="flex items-center space-x-1">
+                    {[...Array(5)].map((_, i) => (
+                      <i 
+                        key={i} 
+                        data-lucide="star" 
+                        className={`w-3.5 h-3.5 ${i < lang.rating ? 'fill-indigo-500 text-indigo-500' : 'text-slate-600'}`}
+                      />
+                    ))}
+                  </div>
+
+                  {/* Wave effect overlay decoration */}
+                  <div className="absolute right-0 bottom-0 w-16 h-16 card-grid-dots opacity-10 pointer-events-none" />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  );
+}
+
+// Sub-Component: Experience Section
+function Experience({ id }) {
+  useEffect(() => {
+    if (window.lucide) window.lucide.createIcons();
+  }, []);
+
+  return (
+    <section id={id} className="py-24 relative overflow-hidden">
+      <div className="max-w-6xl mx-auto px-6 relative z-10">
+        
+        {/* Section Header */}
+        <div className="text-center lg:text-left mb-16">
+          <h2 className="text-xs font-extrabold tracking-[0.2em] text-indigo-500 uppercase">03. Career</h2>
+          <h3 className="mt-2 text-3xl sm:text-4xl font-extrabold dark:text-white text-slate-800">
+            Professional Experience
+          </h3>
+          <div className="h-1 w-20 bg-gradient-to-r from-indigo-500 to-cyan-500 rounded-full mt-4 mx-auto lg:mx-0" />
+        </div>
+
+        {/* Timeline Layout */}
+        <div className="max-w-4xl mx-auto relative pt-4">
+          
+          {/* Vertical connecting line */}
+          <div className="absolute left-4 sm:left-1/2 top-0 bottom-0 w-[2px] timeline-line rounded" />
+
+          {/* Experience Item (Accelya) */}
+          <div className="relative mb-12 flex flex-col sm:flex-row items-start sm:items-center">
+            
+            {/* Timeline Pulsing Node */}
+            <div className="absolute left-4 sm:left-1/2 -translate-x-[7px] w-[16px] h-[16px] rounded-full bg-indigo-500 border-4 border-slate-900 z-20 pulse-dot" />
+
+            {/* Left Box (Visual Spacer / Date on Desktop) */}
+            <div className="w-full sm:w-1/2 sm:pr-12 text-left sm:text-right mb-4 sm:mb-0">
+              <span className="text-xs font-mono font-bold text-indigo-500 bg-indigo-500/10 border border-indigo-500/20 px-3 py-1.5 rounded-full inline-block">
+                Present / Active
+              </span>
+              <h4 className="mt-2 text-lg font-bold dark:text-slate-300 text-slate-600 font-mono">Software Developer</h4>
+            </div>
+
+            {/* Right Box (Actual content card) */}
+            <div className="w-full sm:w-1/2 sm:pl-12">
+              <div className="glass-panel p-6 rounded-3xl border border-slate-700/20 shadow-xl transition-all duration-300 hover:border-indigo-500/40 glow-card">
+                
+                {/* Logo & Header */}
+                <div className="flex justify-between items-start mb-4">
+                  <div>
+                    <h3 className="text-xl font-bold dark:text-white text-slate-800">Accelya</h3>
+                    <p className="text-xs text-indigo-500 dark:text-indigo-400 font-semibold font-mono">Roles & Core Engineering</p>
+                  </div>
+                  <div className="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400">
+                    <i data-lucide="briefcase" className="w-5 h-5" />
+                  </div>
+                </div>
+
+                {/* Professional description */}
+                <p className="text-sm dark:text-slate-300 text-slate-600 leading-relaxed font-sans">
+                  Contributing as an active member of the core engineering team. Actively participating in structured software development workflows, refining backend APIs, and learning modern scalable technologies within a highly collaborative, enterprise-level environment.
+                </p>
+
+                {/* Achievements Bullet lists */}
+                <ul className="mt-4 space-y-2 text-xs dark:text-slate-400 text-slate-500">
+                  <li className="flex items-start">
+                    <i data-lucide="check-circle" className="w-3.5 h-3.5 text-indigo-500 mr-2 mt-0.5 shrink-0" />
+                    Collaborated on optimizing core modular systems.
+                  </li>
+                  <li className="flex items-start">
+                    <i data-lucide="check-circle" className="w-3.5 h-3.5 text-indigo-500 mr-2 mt-0.5 shrink-0" />
+                    Integrated Java & Spring Boot services inside production pipelines.
+                  </li>
+                  <li className="flex items-start">
+                    <i data-lucide="check-circle" className="w-3.5 h-3.5 text-indigo-500 mr-2 mt-0.5 shrink-0" />
+                    Trained in collaborative DevOps and standard Agile workflows.
+                  </li>
+                </ul>
+
+                {/* Tech Badges */}
+                <div className="mt-6 flex flex-wrap gap-2">
+                  <span className="px-2 py-1 rounded bg-slate-800 text-[10px] text-slate-400 border border-slate-700/50">Java</span>
+                  <span className="px-2 py-1 rounded bg-slate-800 text-[10px] text-slate-400 border border-slate-700/50">Spring Boot</span>
+                  <span className="px-2 py-1 rounded bg-slate-800 text-[10px] text-slate-400 border border-slate-700/50">Microservices</span>
+                  <span className="px-2 py-1 rounded bg-slate-800 text-[10px] text-slate-400 border border-slate-700/50">Git</span>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+  );
+}
+
+// Sub-Component: Projects Section
+function Projects({ id }) {
+  useEffect(() => {
+    if (window.lucide) window.lucide.createIcons();
+  }, []);
+
+  const projects = [
+    {
+      title: "Phishing Website Detection using Machine Learning",
+      tagline: "Featured Academic AI Project",
+      desc: "Developed an intelligent machine learning-based classification framework focused on analyzing URL parameters, parsing structure, and checking domain verification indices to proactively detect malicious web portals, reinforcing internet security protocols.",
+      mainTech: ["Python", "Scikit-Learn", "Flask", "Pandas", "HTML/CSS"],
+      github: "https://github.com",
+      live: "https://google.com",
+      featured: true,
+      icon: "shield-alert"
+    },
+    {
+      title: "Spring Boot Microservices Pipeline",
+      tagline: "Backend Enterprise Prototype",
+      desc: "Created a modern spring cloud infrastructure showcasing a API gateway router, Eureka service registry, and config manager. Implemented standard token validation interfaces for inter-service communication modules.",
+      mainTech: ["Java 17", "Spring Boot", "Spring Cloud", "PostgreSQL", "Docker"],
+      github: "https://github.com",
+      live: "https://google.com",
+      featured: false,
+      icon: "server"
+    },
+    {
+      title: "AI-Powered NLP Email Classifier",
+      tagline: "Cognitive NLP Engine",
+      desc: "Built a text processing pipeline leveraging Naive Bayes and basic TF-IDF feature vectors to classify client interaction files based on sentiment, allowing automated triage for routing algorithms.",
+      mainTech: ["Python", "NLTK", "Scikit-Learn", "FastAPI"],
+      github: "https://github.com",
+      live: "https://google.com",
+      featured: false,
+      icon: "message-square-code"
+    }
+  ];
+
+  return (
+    <section id={id} className="py-24 relative bg-slate-900/10 dark:bg-slate-950/20">
+      <div className="max-w-6xl mx-auto px-6 relative z-10">
+        
+        {/* Section Header */}
+        <div className="text-center mb-16">
+          <h2 className="text-xs font-extrabold tracking-[0.2em] text-indigo-500 uppercase">04. Engineering</h2>
+          <h3 className="mt-2 text-3xl sm:text-4xl font-extrabold dark:text-white text-slate-800">
+            Selected Projects
+          </h3>
+          <div className="h-1 w-20 bg-gradient-to-r from-indigo-500 to-cyan-500 rounded-full mt-4 mx-auto" />
+        </div>
+
+        {/* Project Cards Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {projects.map((project, index) => (
+            <div 
+              key={index}
+              className={`glass-panel rounded-3xl border border-slate-700/20 flex flex-col justify-between overflow-hidden glow-card transition-all duration-300 hover:border-indigo-500/40 relative ${
+                project.featured ? 'lg:col-span-2' : ''
+              }`}
+            >
+              
+              {/* Highlight ribbon for main project */}
+              {project.featured && (
+                <div className="absolute top-0 right-0 bg-gradient-to-l from-indigo-600 to-cyan-500 text-white font-mono text-[9px] uppercase font-bold tracking-widest px-4 py-1.5 rounded-bl-2xl">
+                  Featured
+                </div>
+              )}
+
+              {/* Top half: Project Details */}
+              <div className="p-6 sm:p-8">
+                <div className="flex items-center space-x-3 mb-4">
+                  <div className="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400">
+                    <i data-lucide={project.icon} className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <span className="text-[10px] font-mono tracking-wider text-cyan-400 font-semibold uppercase">
+                      {project.tagline}
+                    </span>
+                    <h3 className="text-xl sm:text-2xl font-bold dark:text-white text-slate-800 leading-tight">
+                      {project.title}
+                    </h3>
+                  </div>
+                </div>
+
+                <p className="text-sm dark:text-slate-300 text-slate-600 leading-relaxed font-sans mt-4">
+                  {project.desc}
+                </p>
+              </div>
+
+              {/* Bottom half: Tech + Actions */}
+              <div className="p-6 sm:p-8 bg-slate-900/40 dark:bg-slate-950/30 border-t border-slate-700/10">
+                {/* Tech badges */}
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {project.mainTech.map((tech, i) => (
+                    <span 
+                      key={i} 
+                      className="px-2.5 py-1 text-[10px] font-mono font-semibold rounded-lg bg-indigo-500/5 dark:bg-slate-800 border border-slate-700/20 dark:text-slate-300 text-slate-700"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+                {/* External links */}
+                <div className="flex items-center space-x-4">
+                  <a 
+                    href={project.github}
+                    target="_blank" 
+                    rel="noreferrer"
+                    className="flex items-center text-xs font-semibold dark:text-slate-300 text-slate-600 hover:text-indigo-500 transition-colors"
+                  >
+                    <i data-lucide="github" className="w-4 h-4 mr-1.5" />
+                    GitHub Source
+                  </a>
+                  <a 
+                    href={project.live}
+                    target="_blank" 
+                    rel="noreferrer"
+                    className="flex items-center text-xs font-semibold dark:text-slate-300 text-slate-600 hover:text-cyan-400 transition-colors"
+                  >
+                    <i data-lucide="external-link" className="w-4 h-4 mr-1.5" />
+                    Live Demo
+                  </a>
+                </div>
+              </div>
+
+            </div>
+          ))}
+        </div>
+
+      </div>
+    </section>
+  );
+}
+
+// Sub-Component: Education Section
+function Education({ id }) {
+  useEffect(() => {
+    if (window.lucide) window.lucide.createIcons();
+  }, []);
+
+  return (
+    <section id={id} className="py-24 relative overflow-hidden">
+      <div className="max-w-6xl mx-auto px-6 relative z-10">
+        
+        {/* Section Header */}
+        <div className="text-center lg:text-left mb-16">
+          <h2 className="text-xs font-extrabold tracking-[0.2em] text-indigo-500 uppercase">05. Academics</h2>
+          <h3 className="mt-2 text-3xl sm:text-4xl font-extrabold dark:text-white text-slate-800">
+            Education Timeline
+          </h3>
+          <div className="h-1 w-20 bg-gradient-to-r from-indigo-500 to-cyan-500 rounded-full mt-4 mx-auto lg:mx-0" />
+        </div>
+
+        {/* Academic Card container */}
+        <div className="max-w-4xl mx-auto relative pl-6 border-l-2 timeline-line">
+          
+          <div className="relative mb-8">
+            {/* Dot Node */}
+            <div className="absolute -left-[31px] top-1.5 w-[12px] h-[12px] rounded-full bg-cyan-400 pulse-dot border-2 border-slate-900 z-10" />
+
+            <div className="glass-panel p-6 sm:p-8 rounded-3xl border border-slate-700/20 shadow-xl transition-all duration-300 hover:border-indigo-500/40 glow-card">
+              
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4">
+                <div>
+                  <span className="text-xs font-mono font-bold text-cyan-400">Graduated</span>
+                  <h3 className="text-xl sm:text-2xl font-bold dark:text-white text-slate-800 mt-1">
+                    Bachelor of Engineering in Computer Science
+                  </h3>
+                </div>
+                <span className="mt-2 sm:mt-0 px-3 py-1 rounded-full text-xs font-mono font-bold dark:bg-slate-800 bg-slate-200 border border-slate-700/20 text-indigo-500 dark:text-indigo-400">
+                  CSE
+                </span>
+              </div>
+
+              <p className="text-sm dark:text-slate-300 text-slate-600 leading-relaxed max-w-2xl font-sans">
+                Completed comprehensive undergraduate training in core computer engineering theory and practical software deployment. Dedicated academic research to Artificial Intelligence modules, data classification models, and database storage frameworks.
+              </p>
+
+              {/* Core subjects list */}
+              <h4 className="mt-6 text-xs font-bold uppercase tracking-wider text-slate-400">Focused Coursework</h4>
+              <div className="mt-3 flex flex-wrap gap-2">
+                <span className="px-2.5 py-1 text-[10px] font-semibold rounded-lg bg-indigo-500/5 dark:bg-slate-800 border border-slate-700/20 dark:text-slate-300 text-slate-700">Algorithms & Data Structures</span>
+                <span className="px-2.5 py-1 text-[10px] font-semibold rounded-lg bg-indigo-500/5 dark:bg-slate-800 border border-slate-700/20 dark:text-slate-300 text-slate-700">Artificial Intelligence</span>
+                <span className="px-2.5 py-1 text-[10px] font-semibold rounded-lg bg-indigo-500/5 dark:bg-slate-800 border border-slate-700/20 dark:text-slate-300 text-slate-700">Machine Learning</span>
+                <span className="px-2.5 py-1 text-[10px] font-semibold rounded-lg bg-indigo-500/5 dark:bg-slate-800 border border-slate-700/20 dark:text-slate-300 text-slate-700">Web Technologies</span>
+                <span className="px-2.5 py-1 text-[10px] font-semibold rounded-lg bg-indigo-500/5 dark:bg-slate-800 border border-slate-700/20 dark:text-slate-300 text-slate-700">Database Management Systems</span>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+  );
+}
+
+// Sub-Component: Contact Section
+function Contact({ id, formData, isSending, handleFormSubmit, handleInputChange, isFormSubmitted, setIsFormSubmitted }) {
+  useEffect(() => {
+    if (window.lucide) window.lucide.createIcons();
+  }, [isFormSubmitted]);
+
+  return (
+    <section id={id} className="py-24 relative overflow-hidden">
+      
+      {/* Background decoration */}
+      <div className="absolute top-[30%] left-[5%] w-72 h-72 rounded-full bg-indigo-500/5 blur-[90px] dark:block hidden" />
+      <div className="absolute bottom-[20%] right-[5%] w-80 h-80 rounded-full bg-cyan-500/5 blur-[90px] dark:block hidden" />
+
+      <div className="max-w-6xl mx-auto px-6 relative z-10">
+        
+        {/* Section Header */}
+        <div className="text-center mb-16">
+          <h2 className="text-xs font-extrabold tracking-[0.2em] text-indigo-500 uppercase">06. Reach Out</h2>
+          <h3 className="mt-2 text-3xl sm:text-4xl font-extrabold dark:text-white text-slate-800">
+            Let's Collaborate
+          </h3>
+          <div className="h-1 w-20 bg-gradient-to-r from-indigo-500 to-cyan-500 rounded-full mt-4 mx-auto" />
+        </div>
+
+        {/* Contact Content & Form layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 max-w-5xl mx-auto">
+          
+          {/* Left Column: Direct Info (5 cols) */}
+          <div className="lg:col-span-5 flex flex-col justify-between space-y-8">
+            <div className="space-y-6">
+              <h4 className="text-2xl font-bold dark:text-white text-slate-800 leading-snug">
+                Have an AI project or career opportunity?
+              </h4>
+              <p className="text-sm dark:text-slate-400 text-slate-500 leading-relaxed font-sans">
+                I'm open to full-time developer positions, collaborative research experiments, and cutting-edge artificial intelligence builds. Send me a quick note, and I will get back to you within 24 hours.
+              </p>
+            </div>
+
+            {/* Direct details grid */}
+            <div className="space-y-4 pt-4">
+              <div className="flex items-center space-x-4 p-4 rounded-2xl glass-panel border border-slate-700/10">
+                <div className="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400">
+                  <i data-lucide="mail" className="w-5 h-5" />
+                </div>
+                <div>
+                  <h5 className="text-[10px] uppercase font-mono tracking-widest text-slate-500 font-bold">Email Me</h5>
+                  <p className="text-xs sm:text-sm font-semibold dark:text-white text-slate-800 select-all">
+                    madhavakrishna.s@outlook.com
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center space-x-4 p-4 rounded-2xl glass-panel border border-slate-700/10">
+                <div className="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400">
+                  <i data-lucide="map-pin" className="w-5 h-5" />
+                </div>
+                <div>
+                  <h5 className="text-[10px] uppercase font-mono tracking-widest text-slate-500 font-bold">Location</h5>
+                  <p className="text-xs sm:text-sm font-semibold dark:text-white text-slate-800">
+                    Mumbai, India
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Social Icons list */}
+            <div className="flex space-x-4 pt-4">
+              <a 
+                href="https://linkedin.com" 
+                target="_blank" 
+                rel="noreferrer"
+                className="w-12 h-12 rounded-2xl glass-panel border border-slate-700/20 flex items-center justify-center dark:text-slate-300 text-slate-600 hover:text-indigo-500 dark:hover:text-indigo-400 hover:-translate-y-1 transition-all duration-300"
+                title="LinkedIn Profile"
+              >
+                <i data-lucide="linkedin" className="w-5 h-5" />
+              </a>
+
+              <a 
+                href="https://github.com" 
+                target="_blank" 
+                rel="noreferrer"
+                className="w-12 h-12 rounded-2xl glass-panel border border-slate-700/20 flex items-center justify-center dark:text-slate-300 text-slate-600 hover:text-cyan-400 hover:-translate-y-1 transition-all duration-300"
+                title="GitHub Profile"
+              >
+                <i data-lucide="github" className="w-5 h-5" />
+              </a>
+
+              <a 
+                href="mailto:madhavakrishna.s@outlook.com" 
+                className="w-12 h-12 rounded-2xl glass-panel border border-slate-700/20 flex items-center justify-center dark:text-slate-300 text-slate-600 hover:text-pink-500 hover:-translate-y-1 transition-all duration-300"
+                title="Email Message"
+              >
+                <i data-lucide="send" className="w-5 h-5" />
+              </a>
+            </div>
+          </div>
+
+          {/* Right Column: Contact Form (7 cols) */}
+          <div className="lg:col-span-7">
+            <div className="glass-panel p-6 sm:p-8 rounded-3xl border border-slate-700/20 shadow-2xl relative">
+              <form onSubmit={handleFormSubmit} className="space-y-6">
+                
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  {/* Name Input */}
+                  <div className="relative">
+                    <label className="text-xs font-mono font-bold tracking-wider text-slate-400 uppercase block mb-2">Name</label>
+                    <input 
+                      type="text" 
+                      name="name"
+                      required
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      placeholder="Your Name"
+                      className="w-full px-4 py-3 rounded-xl bg-slate-900/50 dark:bg-slate-950/50 border border-slate-700/30 focus:border-indigo-500 dark:text-white text-slate-800 outline-none transition-all duration-300 text-sm"
+                    />
+                  </div>
+
+                  {/* Email Input */}
+                  <div className="relative">
+                    <label className="text-xs font-mono font-bold tracking-wider text-slate-400 uppercase block mb-2">Email Address</label>
+                    <input 
+                      type="email" 
+                      name="email"
+                      required
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      placeholder="your.email@example.com"
+                      className="w-full px-4 py-3 rounded-xl bg-slate-900/50 dark:bg-slate-950/50 border border-slate-700/30 focus:border-indigo-500 dark:text-white text-slate-800 outline-none transition-all duration-300 text-sm"
+                    />
+                  </div>
+                </div>
+
+                {/* Subject Input */}
+                <div>
+                  <label className="text-xs font-mono font-bold tracking-wider text-slate-400 uppercase block mb-2">Subject</label>
+                  <input 
+                    type="text" 
+                    name="subject"
+                    required
+                    value={formData.subject}
+                    onChange={handleInputChange}
+                    placeholder="Project Collaboration / Opportunity"
+                    className="w-full px-4 py-3 rounded-xl bg-slate-900/50 dark:bg-slate-950/50 border border-slate-700/30 focus:border-indigo-500 dark:text-white text-slate-800 outline-none transition-all duration-300 text-sm"
+                  />
+                </div>
+
+                {/* Message Input */}
+                <div>
+                  <label className="text-xs font-mono font-bold tracking-wider text-slate-400 uppercase block mb-2">Message</label>
+                  <textarea 
+                    name="message"
+                    rows="4"
+                    required
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    placeholder="Describe your project, timeline, or open role..."
+                    className="w-full px-4 py-3 rounded-xl bg-slate-900/50 dark:bg-slate-950/50 border border-slate-700/30 focus:border-indigo-500 dark:text-white text-slate-800 outline-none transition-all duration-300 text-sm resize-none"
+                  />
+                </div>
+
+                {/* Submit button */}
+                <button
+                  type="submit"
+                  disabled={isSending}
+                  className="w-full py-4 rounded-xl bg-gradient-to-r from-indigo-600 to-cyan-500 hover:from-indigo-500 hover:to-cyan-400 text-white font-bold tracking-wider uppercase transition-all duration-300 shadow-neon-indigo disabled:opacity-50 text-xs flex items-center justify-center"
+                >
+                  {isSending ? (
+                    <>
+                      <i data-lucide="loader-2" className="w-4 h-4 mr-2 animate-spin" />
+                      Dispatching Message...
+                    </>
+                  ) : (
+                    <>
+                      <i data-lucide="send-horizontal" className="w-4.5 h-4.5 mr-2" />
+                      Transmit Message
+                    </>
+                  )}
+                </button>
+              </form>
+
+              {/* Decorative grid pattern */}
+              <div className="absolute bottom-2 right-2 w-12 h-12 card-grid-dots opacity-20 pointer-events-none" />
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      {/* Modern custom toast alert upon success */}
+      {isFormSubmitted && (
+        <div className="fixed bottom-6 right-6 z-[100] max-w-sm glass-panel p-4 rounded-2xl border-l-4 border-indigo-500 shadow-2xl flex items-start space-x-3.5 animate-[fade-in-up_0.3s_ease-out_forwards]">
+          <div className="w-8 h-8 rounded-full bg-indigo-500/20 flex items-center justify-center text-indigo-400 shrink-0 mt-0.5">
+            <i data-lucide="shield-check" className="w-4.5 h-4.5" />
+          </div>
+          <div>
+            <h4 className="text-sm font-bold dark:text-white text-slate-800">Connection Secured!</h4>
+            <p className="text-xs dark:text-slate-400 text-slate-500 mt-1">
+              Your message was sent successfully. Madhava will reach out to you shortly.
+            </p>
+            <button 
+              onClick={() => setIsFormSubmitted(false)}
+              className="text-[10px] font-bold text-indigo-400 hover:text-indigo-300 mt-2 block"
+            >
+              Dismiss
+            </button>
+          </div>
+        </div>
+      )}
+
+    </section>
+  );
+}
+
+// Sub-Component: Footer Section
+function Footer() {
+  const currentYear = new Date().getFullYear();
+
+  const handleBackToTop = (e) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  return (
+    <footer className="border-t border-slate-700/20 py-10 relative overflow-hidden bg-slate-950/40">
+      <div className="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between relative z-10">
+        
+        {/* Branding text */}
+        <div className="flex items-center space-x-2 mb-4 sm:mb-0">
+          <span className="text-xs font-mono tracking-[0.2em] text-slate-500 font-bold">
+            MADHAVA KRISHNA .S // © {currentYear}
+          </span>
+        </div>
+
+        {/* Action Link Back to Top */}
+        <a 
+          href="#home" 
+          onClick={handleBackToTop}
+          className="flex items-center text-xs font-semibold dark:text-slate-400 text-slate-600 hover:text-indigo-500 transition-colors"
+        >
+          Back To Top
+          <i data-lucide="arrow-up" className="w-4 h-4 ml-1.5 animate-bounce" />
+        </a>
+
+      </div>
+    </footer>
+  );
+}
+
+// Sub-Component: Resume Modal Viewer (Download trigger)
+function ResumeModal({ onClose }) {
+  useEffect(() => {
+    if (window.lucide) window.lucide.createIcons();
+  }, []);
+
+  const handleDownload = () => {
+    // Triggers download of fake / template pdf or user's asset
+    const link = document.createElement('a');
+    link.href = '#';
+    link.setAttribute('download', 'Madhava_Krishna_S_Resume.pdf');
+    document.body.appendChild(link);
+    // Simple prompt simulating standard PDF download
+    alert("Simulating PDF Download! Madhava Krishna's professional CV in PDF structure will download here.");
+    onClose();
+  };
+
+  return (
+    <div className="fixed inset-0 z-[1000] flex items-center justify-center p-6 bg-black/60 backdrop-blur-md animate-[fade-in_0.3s_ease-out]">
+      <div className="glass-panel w-full max-w-lg rounded-3xl border border-white/10 p-6 relative overflow-hidden flex flex-col items-center text-center shadow-2xl">
+        
+        {/* Close Button */}
+        <button 
+          onClick={onClose}
+          className="absolute top-4 right-4 w-8 h-8 rounded-full border border-slate-700/30 flex items-center justify-center hover:bg-slate-800/10 dark:hover:bg-slate-700/30 dark:text-slate-300 text-slate-600"
+        >
+          <i data-lucide="x" className="w-4 h-4" />
+        </button>
+
+        {/* Modal Visual */}
+        <div className="w-14 h-14 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 mb-4">
+          <i data-lucide="file-text" className="w-7 h-7" />
+        </div>
+
+        <h3 className="text-xl font-bold dark:text-white text-slate-800">
+          Download Professional CV
+        </h3>
+        
+        <p className="text-sm dark:text-slate-400 text-slate-500 max-w-sm mt-2 leading-relaxed">
+          Access the complete, recruiter-ready resume of Madhava Krishna .S containing details about Accelya engineering roles, ML achievements, and spring microservices.
+        </p>
+
+        {/* Action Button */}
+        <button 
+          onClick={handleDownload}
+          className="mt-6 px-8 py-3.5 rounded-xl bg-gradient-to-r from-indigo-600 to-cyan-500 text-white text-xs font-semibold uppercase tracking-wider transition-all duration-300 shadow-neon-indigo flex items-center"
+        >
+          <i data-lucide="download" className="w-4.5 h-4.5 mr-2" />
+          Acquire PDF Document
+        </button>
+
+        <span className="text-[10px] text-slate-500 font-mono tracking-widest mt-4">
+          FILE_SIZE: 142 KB // FORMAT: PDF
+        </span>
+
+      </div>
+    </div>
+  );
+}
+
+// Render the application to the DOM
+ReactDOM.render(<App />, document.getElementById('root'));
+
+  </script>
 
   <!-- Fallback Lucide Icon loader -->
   <script>
